@@ -8,7 +8,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
-class get_data(Object):
+class GetCommittee(Object):
     """
     Get data from website and move it to CSV
     Outputs 12 fields to 'committees.csv'
@@ -17,9 +17,9 @@ class get_data(Object):
     
     Example
     
-    from get_data import *
+    from getcommittee import GetCommittee
     output = 'committees.csv'
-    get_committee(output)
+    GetCommittee.get_committee(output)
     
     """
     
