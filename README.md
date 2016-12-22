@@ -3,9 +3,7 @@
 ##Committees
 Notice that the committees are bienniel and oddnumbered years. We are currently in the 2015 year, but soon switching to 2017.
 
-[Wisconsin Committees](http://docs.legis.wisconsin.gov/2015/committees)
-
-View source on each of those 4 committee types (Senate, Assembly, Joint, Other) to find the "feed" links
+[Wisconsin Committees](http://docs.legis.wisconsin.gov/2015/committees). View source on each of those 4 committee types (Senate, Assembly, Joint, Other) to find the "feed" links
 
 * [Senate](http://docs.legis.wisconsin.gov/feed/2015/committees/senate)
 * [Assembly](http://docs.legis.wisconsin.gov/feed/2015/committees/assembly)
@@ -31,9 +29,7 @@ Our data structure is
              list OtherMembers, 
              list Hearings]
              
-with default NoneType.
-
-The code takes about half a minute to run on 81 separate committees (2016-12-21).
+with default NoneType. The code takes about half a minute to run on 81 separate committees (2016-12-21).
 
 ###Files
 * getcommittee.py / getcommittee.ipynb has code
