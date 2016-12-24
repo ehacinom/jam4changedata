@@ -1,4 +1,3 @@
-import urllib
 import xmltodict
 import csv
 from bs4 import BeautifulSoup
@@ -7,8 +6,9 @@ import re
 import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
+from utils import *
 
-class GetCommittee(Object):
+class GetCommittee(object):
     """
     Get data from website and move it to CSV
     Outputs 12 fields to 'committees.csv'
@@ -22,24 +22,6 @@ class GetCommittee(Object):
     GetCommittee.get_committee(output)
     
     """
-    
-    def load_txt(url):
-        """
-        Grab text from url
-    
-        INPUT
-        url of text/xml data
-    
-        OUTPUT
-        text/xml data
-        
-        """
-        # load txt
-        fp = urllib.urlopen(url)
-        text = fp.read()
-        fp.close()
-    
-        return text
 
     def edit_Joint_Committee(item):
         """
@@ -191,9 +173,8 @@ class GetCommittee(Object):
             hearings = tmp
             
         else:
-            print 'WARNING'
-            print 'get_data.edit_committee_info() split info into 3+ parts.'
-            print info, '\n'
+            w = 'get_data.edit_committee_info() split info into 3+ parts.'
+            warning(w, info)
     
         # split into headers/chairs/staff/etc, _, members
         g, _, members = f.split('Members')
