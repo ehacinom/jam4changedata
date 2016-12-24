@@ -1,17 +1,8 @@
 import urllib
 
 def load_txt(url):
-    """
-    Grab text from url
-
-    INPUT
-    url of text/xml data
-
-    OUTPUT
-    text/xml data
+    """Grab text from string url"""
     
-    """
-    # load txt
     fp = urllib.urlopen(url)
     text = fp.read()
     fp.close()
