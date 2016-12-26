@@ -39,9 +39,9 @@ with default NoneType. The code takes about half a minute to run on 81 separate 
 ###In the future
 * Check that data skipped in get_data.edit_JointCommittee() can be skipped.
 * get_data.edit_JointCommittee()
-** slim / break up
-** Look into exceptions for names when adding spaces before capital letters 
-** This info doesn't include Hearing Documents/In/Out/All/Proposals
+  * slim / break up
+  * Look into exceptions for names when adding spaces before capital letters 
+  * This info doesn't include Hearing Documents/In/Out/All/Proposals
 * Follow more links? Get more research? as I've skipped links for ease.
 
 I also need to send to MySQL (instead of csv) once I run it on the server.
