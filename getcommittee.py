@@ -18,12 +18,64 @@ class GetCommittee(object):
     Example
     
     from getcommittee import GetCommittee
-    output = 'committees.csv'
-    GetCommittee.get_committee(output)
+    obj = GetCommittee()
     
     """
+    
+    def __init__(self):
+        """
+        Get all data for committees
+        
+        SAVE TO FILE committees.csv
+        data
+            [name, committee_type, link, 
+             header, Chair, CoChair, 
+             ViceChair, CommitteeClerk, LegislativeCouncilStaff, 
+             Member, Other, hearings]
+    
+        SAVE TO FILE committee_list.txt
+        names of all the committees
+    
+        TO DO
+        Follow more links? Get more research? as I've skipped links for ease.
+    
+        """
+    
+        root = 'http://docs.legis.wisconsin.gov/feed/2015/committees/'
+        committee_type = ['Senate', 'Assembly', 'Joint', 'Other']
+        #committee_type = ['Senate']
+    
+        data = []
+        for ct in committee_type:
+            # metadata
+            # [committee name, committee_type, link]
+            text = load_txt(root+ct)
+            metadata = self.get_committee_metadata(text, ct)
+        
+            # other data
+            infodata = self.get_committee_info(metadata)
+        
+            # add to data
+            data.extend(infodata)
+        
+        # save list of committees to file
+        with open('committee_list.txt', 'w') as f:
+            for d in data:
+                f.write(d[0] + '\n')
+    
+        # write list of lists to outfile
+        header = ['CommitteeName', 'CommitteeType', 'URL', 
+                  'Header', 'Chair', 'CoChair', 
+                  'ViceChair', 'CommitteeClerk', 'LegislativeCouncilStaff', 
+                  'Members', 'OtherMembers', 'Hearings']
+        with open('committees.csv', 'w') as f:
+            writer = csv.writer(f)
+            writer.writerow(header)
+            writer.writerows(data)
+    
+        return
 
-    def edit_Joint_Committee(item):
+    def edit_Joint_Committee(self, item):
         """
         Dealing with Joint Committee reports
         (esp from the Joint Legislative Audit Committee)
@@ -65,7 +117,7 @@ class GetCommittee(object):
     
         return True
     
-    def get_committee_metadata(text, committee_type):
+    def get_committee_metadata(self, text, committee_type):
         """
         Get metadata for committees
     
@@ -105,7 +157,7 @@ class GetCommittee(object):
         
             # dealing with Joint Committee reports
             if committee_type == 'Joint':
-                interest = edit_Joint_Committee(item)
+                interest = self.edit_Joint_Committee(item)
         
             # add to data
             if interest:
@@ -113,7 +165,7 @@ class GetCommittee(object):
     
         return data
     
-    def edit_committee_info(info):
+    def edit_committee_info(self, info):
         """
         String editing to get committee info
         Reduce text data from each parsed committee site
@@ -243,18 +295,24 @@ class GetCommittee(object):
             # Chair
             a = line.split(' (Chair)')
             if len(a) == 2:
+                if a[0] in Chair: 
+                    continue
                 Chair.append(a[0])
                 continue
 
             # CoChair
             a = line.split(' (Co-Chair)')
             if len(a) == 2:
+                if a[0] in CoChair:
+                    continue
                 CoChair.append(a[0])
                 continue
 
             # ViceChair
             a = line.split(' (Vice-Chair)')
             if len(a) == 2:
+                if a[0] in CoChair:
+                    continue
                 ViceChair.append(a[0])
                 continue
         
@@ -271,7 +329,7 @@ class GetCommittee(object):
         data = [d if d else None for d in data]
         return data
     
-    def get_committee_info(metadata):
+    def get_committee_info(self, metadata):
         """
         Follow links in committee metadata for individual committee info
     
@@ -310,64 +368,8 @@ class GetCommittee(object):
             cominfo = [None for i in xrange(9)]
             if info:
                 # header, Chair, CoChair, ViceChair, CommitteeClerk, LegislativeCouncilStaff, Member, Other, hearings
-                cominfo = edit_committee_info(info.text)
+                cominfo = self.edit_committee_info(info.text)
             tmp = meta + cominfo
             data.append(tmp)
         
         return data
-    
-    def get_committee(out = 'committees.csv'):
-        """
-        Get all data for committees
-    
-        INPUT
-        out the output file
-    
-        SAVE TO FILE out
-        data
-            [name, committee_type, link, 
-             header, Chair, CoChair, 
-             ViceChair, CommitteeClerk, LegislativeCouncilStaff, 
-             Member, Other, hearings]
-    
-        SAVE TO FILE committee_list.txt
-        names of all the committees
-    
-        TO DO
-        Follow more links? Get more research? as I've skipped links for ease.
-    
-        """
-    
-        root = 'http://docs.legis.wisconsin.gov/feed/2015/committees/'
-        committee_type = ['Senate', 'Assembly', 'Joint', 'Other']
-        #committee_type = ['Senate']
-    
-        data = []
-        for ct in committee_type:
-            # metadata
-            # [committee name, committee_type, link]
-            text = load_txt(root+ct)
-            metadata = get_committee_metadata(text, ct)
-        
-            # other data
-            infodata = get_committee_info(metadata)
-        
-            # add to data
-            data.extend(infodata)
-        
-        # save list of committees to file
-        with open('committee_list.txt', 'w') as f:
-            for d in data:
-                f.write(d[0] + '\n')
-    
-        # write list of lists to outfile
-        header = ['CommitteeName', 'CommitteeType', 'URL', 
-                  'Header', 'Chair', 'CoChair', 
-                  'ViceChair', 'CommitteeClerk', 'LegislativeCouncilStaff', 
-                  'Members', 'OtherMembers', 'Hearings']
-        with open(out, 'w') as f:
-            writer = csv.writer(f)
-            writer.writerow(header)
-            writer.writerows(data)
-    
-        return
