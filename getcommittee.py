@@ -18,7 +18,7 @@ class GetCommittee(object):
     Example
     
     from getcommittee import GetCommittee
-    obj = GetCommittee()
+    GetCommittee()
     
     """
     
