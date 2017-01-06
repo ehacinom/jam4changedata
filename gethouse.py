@@ -14,12 +14,12 @@ class GetHouse(object):
     Example
     
     from gethouse import GetHouse
-    GetHouse('assembly')
-    GetHouse('senate')
+    GetHouse('assembly', 2015)
+    GetHouse('senate', 2017)
     
     """
     
-    def __init__(self, out = 'assembly'):
+    def __init__(self, out = 'assembly', year = 2015):
         """
         Get all data for Representatives/Senators
 
@@ -46,25 +46,26 @@ class GetHouse(object):
                 8 
                 9 MadisonOffice 
                 10 Telephones 
-                11 Fax
-                12 
-                13 DistrictPhone ()
-                14 Email
-                15 
-                16 DistrictAddress ()
-                17 
-                18 VotingAddress ()
-                19 
-                20 Staff ()
-                21 
+                11 
+                12 Fax ()
+                13
+                14 DistrictPhone ()
+                15 Email
+                16 
+                17 DistrictAddress ()
+                18 
+                19 VotingAddress ()
+                10 
+                21 Staff ()
                 22 
-                23 Committees ()
-                24
+                23 
+                24 Committees ()
                 25
-                26 Biography ()
+                26
+                27 Biography ()
 
         TODO
-        There is overlap between the following three.
+        There is overlap between the following four.
         1. Author Index http://docs.legis.wisconsin.gov/
             - 2015/related/author_index/assembly/1362?view=section
             - 2017/related/author_index/senate/1501
@@ -83,22 +84,29 @@ class GetHouse(object):
             Cosponsored
             Amendments
             Votes
+        4. right, the text from the right side html of the official website
 
         """
 
         if out not in ['assembly', 'senate']:
-            warning('Input must be either "assembly" or "senate".')
-            return 0
+            warning('Input house must be either "assembly" or "senate".')
+            return None
+        
+        if year not in [2015, 2017]:
+            warning('Input year must be either 2015 or 2017.')
+        
+        self.out = out
+        self.year = str(year)
         
         # set up regex for websites
-        ow = r'/2015/legislators/' + out + r'/'
-        pw = r'http://legis.wisconsin.gov/' + out + '/'
+        ow = r'/' + self.year + r'/legislators/' + self.out + r'/'
+        pw = r'http://legis.wisconsin.gov/' + self.out + r'/'
         official_web = re.compile(ow)
         personal_web = re.compile(pw)
 
         # Each representative has official website, and most have personal website
         # official is your 4digit ID at the end of 
-        #     http://docs.legis.wisconsin.gov/2015/legislators/OUT/
+        #     http://docs.legis.wisconsin.gov/YEAR/legislators/OUT/
         # personal is your District/LastName at the end of
         #     http://legis.wisconsin.gov/OUT/
         off_header = 'http://docs.legis.wisconsin.gov'
@@ -107,15 +115,16 @@ class GetHouse(object):
         # https://regex101.com/r/6er3zh/1
         regex = r'^\n+\w+? (.+?) (\w+?)\n+((.+?)|)\n+\w+ District ' + \
                 r'(\d+?) \((R|D) - (.+?)\)(\s|\S)+?Madison Office:' + \
-                r'\s+(.+?)\s+Telephone:\n\s+(.+)\s+Fax:\n\s+(.+)\s' + \
-                r'+(District Phone:\s+(.+)|)\s+Email:\n(.+)\s+(Dist' + \
-                r'rict Address:\s+(.+)|)\s+(Voting Address:\s+(.' + \
-                r'+)|)\s*(Staff:\n((\s|\S)+?)|)\n(Current Committe' + \
-                r'es\n((\s|\S)+?)|)\n\s+(Biography\n((.| |\n)+)|)$'
+                r'\s+(.+?)\s+Telephone:\n\s+(.+)\s*(Fax:\n\s+(.+)|' + \
+                r')\s+(District Phone:\s+(.+)|)\s+Email:\n(.+)\s+(' + \
+                r'District Address:\s+(.+)|)\s+(Voting Address:\s+' + \
+                r'(.+)|)\s*(Staff:\n((\s|\S)+?)|)\n(Current Commit' + \
+                r'tees\n((\s|\S)+?)|)\n\s+(Biography\n((.| |\n)+)|)$'
         self.regex = re.compile(regex)
 
         # Go to main list and parse html
-        url = 'https://docs.legis.wisconsin.gov/2015/legislators/' + out
+        url = 'https://docs.legis.wisconsin.gov/' + \
+              self.year + '/legislators/' + self.out
         text = load_txt(url)
         parser = BeautifulSoup(text, "lxml")
         legislators = parser.body.find_all('div', attrs={'class':'rounded'})
@@ -154,12 +163,6 @@ class GetHouse(object):
                 # retrieve data
                 rep = self.edit_left(match)
                 
-                for i, r in enumerate(rep):
-                    if i ==  9 and r: print 'district phone'
-                    elif i == 13: break
-                    print r
-                print '---'
-                
                 rep.extend([official, personal])
                 # also feed websites, see TODO
                 house.append(rep)
@@ -178,8 +181,9 @@ class GetHouse(object):
         fn = out + '.csv'
         header = ['FirstName', 'LastName', 'Position', 'District', 'Party', 
                   'City', 'MadisonOffice', 'Telephones', 'Fax', 
-                  'DistrictPhone', 'Email', 'VotingAddress', 'Staff', 
-                  'Committees', 'Biography', 'OfficiaWeb', 'PersonalWeb']
+                  'DistrictPhone', 'Email', 'DistrictAddress', 
+                  'VotingAddress', 'Staff', 'Committees', 'Biography', 
+                  'OfficiaWeb', 'PersonalWeb']
         with open(fn, 'wb') as f:
             writer = csv.writer(f)
             writer.writerow(header)
@@ -361,8 +365,8 @@ class GetHouse(object):
         """
         
         # get matches
-        rep = list(match.group(1, 2, 4, 5, 6, 7, 9, 10, 11,
-                               13, 14, 16, 18, 20, 23, 26))
+        rep = list(match.group(1, 2, 4, 5, 6, 7, 9, 10, 12,
+                               14, 15, 17, 19, 21, 24, 27))
         
         # Addresses
         # Room 113 NorthState CapitolP.O. Box 8952Madison, WI 53708
