@@ -191,12 +191,15 @@ class GetCommittee(object):
         And instead of testing if len(a) == 2, check if a[0 or 1] == None
     
         """
-    
+        
+        print info
+        
         # name exceptions?
         names = ['VanderMeer', 'Bowers2']
     
         # rm header
         a = info.split('Notify', 1)[-1].lstrip().rstrip()
+        print a
     
         # add space before every CAP preceded by ')' or '[a-z]' or '2' but NOT '\n', ' ' or '-'
         #b = re.sub(r'([a-z][a-z|\)])([A-Z])', r'\1\n\2', a)
@@ -204,15 +207,23 @@ class GetCommittee(object):
         # https://regex101.com/r/XS0OC5/1
         b = re.sub(r'(?!VanderM)([A-Z|\(]\w+[a-z|\)|2])([A-Z])', r'\1\n\2', a)
     
+        print b
+    
         # add space before '(' - rare
         # eg for clerk phone number
         c = re.sub(r'([a-z])\(', r'\1 (', b)
+        
+        print c
     
         # replace '\r\n ' to '\n'
         d = re.sub(r'\r\n +', '\n', c)
+        
+        print e
     
         # lots of spaces to one
         e = re.sub(' +', ' ', d)
+    
+        print f
     
         # split off hearings
         hearings = None

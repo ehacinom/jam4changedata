@@ -39,5 +39,11 @@ def rm_unicode(text):
     b = re.sub(u"(\u201c|\u201d)", '"', a)
     c = re.sub(u"(\u2013)", '-', b)
     d = re.sub(u"(\u2014)", '--', c)
-
-    return str(d)
+    e = re.sub(u"\xe9", 'e', d)
+    
+    try:
+        e = str(e)
+    except UnicodeEncodeError:
+        warning("Unicode in utils.py", e)
+    
+    return e
