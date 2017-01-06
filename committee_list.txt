@@ -1,57 +1,62 @@
 Senate Committee on Administrative Rules
-Senate Committee on Public Benefit and Regulatory Reform
 Senate Committee on Transportation and Veterans Affairs
 Senate Committee on Workforce Development, Public Works, and Military Affairs
+Senate Committee on Education Reform (Disbanded 8-28-15)
 Senate Committee on Government Operations and Consumer Protection
+Senate Committee on Public Benefit and Regulatory Reform
 Senate Committee on Labor and Government Reform
-Senate Committee on Revenue, Financial Institutions, and Rural Issues
+Senate Committee on Revenue, Financial Institutions and Rural Issues
 Senate Committee on Natural Resources and Energy
-Senate Committee on Sporting Heritage, Mining, and Forestry
+Senate Committee on Sporting Heritage, Mining and Forestry
 Senate Committee on Insurance, Housing, and Trade
 Senate Committee on Judiciary and Public Safety
 Senate Committee on Economic Development and Commerce
 Senate Committee on Elections and Local Government
 Senate Committee on Universities and Technical Colleges
+Senate Committee on Education Reform and Government Operations (Disbanded 4-22-15)
 Senate Committee on Senate Organization
-Senate Committee on Agriculture, Small Business, and Tourism
-Senate Committee on Finance
 Senate Committee on Health and Human Services
+Senate Committee on Agriculture, Small Business and Tourism
+Senate Committee on Finance
 Senate Committee on Education
 Assembly Speaker's Task Force on Alzheimer's and Dementia
+Assembly Speaker's Task Force on Urban Education
+Assembly Committee on Mining and Rural Development
 Assembly Committee on Veterans and Military Affairs
 Assembly Speaker's Task Force on Youth Workforce Readiness
-Assembly Speaker's Task Force on Urban Education
+Assembly Committee on Jobs and the Economy
 Assembly Committee on Mental Health Reform
 Assembly Committee on Public Benefit Reform
-Assembly Committee on Mining and Rural Development
 Assembly Committee on Interstate Affairs
-Assembly Committee on Jobs and the Economy
 Assembly Committee on Criminal Justice and Public Safety
 Assembly Committee on Rules
 Assembly Committee on Workforce Development
+Assembly Committee for Review of Administrative Rules
 Assembly Committee on Assembly Organization
+Assembly Committee on Audit
+Assembly Committee on Employment Relations
 Assembly Committee on Finance
-Assembly Committee on Transportation
 Assembly Committee on Urban and Local Affairs
 Assembly Committee on Ways and Means
+Assembly Committee on Transportation
 Assembly Committee on State Affairs and Government Operations
 Assembly Committee on Tourism
 Assembly Committee on Natural Resources and Sporting Heritage
 Assembly Committee on Small Business Development
-Assembly Committee on Insurance
 Assembly Committee on Judiciary
 Assembly Committee on Labor
-Assembly Committee on Financial Institutions
 Assembly Committee on Health
 Assembly Committee on Housing and Real Estate
+Assembly Committee on Insurance
 Assembly Committee on Environment and Forestry
 Assembly Committee on Family Law
+Assembly Committee on Financial Institutions
 Assembly Committee on Energy and Utilities
-Assembly Committee on Corrections
 Assembly Committee on Education
 Assembly Committee on Constitution and Ethics
 Assembly Committee on Consumer Protection
 Assembly Committee on Colleges and Universities
+Assembly Committee on Corrections
 Assembly Committee on Agriculture
 Assembly Committee on Campaigns and Elections
 Assembly Committee on Children and Families
@@ -60,8 +65,8 @@ Joint Survey Committee on Retirement Systems
 Joint Survey Committee on Tax Exemptions
 Joint Review Committee on Criminal Penalties
 Joint Committee on Legislative Organization
-Joint Legislative Council
 Law Revision Committee
+Joint Legislative Council
 Joint Committee on Information Policy and Technology
 Joint Legislative Audit Committee
 Joint Committee on Finance
@@ -75,7 +80,7 @@ Study Committee on the Review of Tax Incremental Financing
 Study Committee on Adoption Disruption and Dissolution
 Study Committee on Problem-Solving Courts, Alternatives, and Diversions
 Study Committee on the Student Achievement in Education (SAGE) Program
-University of Wisconsin Hospitals and Clinics Authority
 Read to Lead Development Council
 Sporting Heritage Council
 Midwestern Higher Education Commission
+University of Wisconsin Hospitals and Clinics Authority

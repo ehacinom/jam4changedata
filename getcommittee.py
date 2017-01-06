@@ -1,12 +1,15 @@
-import xmltodict
-import csv
 from bs4 import BeautifulSoup
+import csv
 import lxml
 import re
-import sys
-reload(sys)
-sys.setdefaultencoding("utf-8")
 from utils import *
+import xmltodict
+
+## Note this moves output of ipython notebook to terminal 
+## but lets us have unicode characters
+# import sys
+# reload(sys)
+# sys.setdefaultencoding("utf-8")
 
 class GetCommittee(object):
     """
@@ -38,12 +41,13 @@ class GetCommittee(object):
     
         TO DO
         Follow more links? Get more research? as I've skipped links for ease.
+        Definitely remove lists and turn into strings uhoh :p
+        Fix up edit_committee_info, it's long and repetitive.
     
         """
     
         root = 'http://docs.legis.wisconsin.gov/feed/2015/committees/'
         committee_type = ['Senate', 'Assembly', 'Joint', 'Other']
-        #committee_type = ['Senate']
     
         data = []
         for ct in committee_type:
@@ -182,7 +186,9 @@ class GetCommittee(object):
         TO DO
         Look into exceptions for names when adding spaces before capital letters 
         This info doesn't include Hearing Documents/In/Out/All/Proposals
-        Can also clean this up a little bit
+        Can also clean this up a lot
+            duplicates for committee members
+        And instead of testing if len(a) == 2, check if a[0 or 1] == None
     
         """
     
@@ -261,7 +267,7 @@ class GetCommittee(object):
                     CoChair.append(a[0])
                     prev = CoChair
                     continue
-            
+                
                 # ViceChair
                 a = line.split(' (Vice-Chair)')
                 if len(a) == 2:
@@ -283,8 +289,14 @@ class GetCommittee(object):
                     prev = LegislativeCouncilStaff
                     continue
             
-                # repeat name with no tag
-                prev.append(a[0].lstrip())
+                # try/except to deal with missing committee pages from
+                # turnover, jan 5 2017
+                try:
+                    # repeat name with no tag
+                    prev.append(a[0].lstrip())
+                except AttributeError:
+                    warn = 'Due to missing committee chairs (new 2017 class).'
+                    warning(warn, lines, line, a)
 
         # parse members
         Member, Other = [], []
@@ -367,8 +379,12 @@ class GetCommittee(object):
             # retrieve committee info
             cominfo = [None for i in xrange(9)]
             if info:
-                # header, Chair, CoChair, ViceChair, CommitteeClerk, LegislativeCouncilStaff, Member, Other, hearings
-                cominfo = self.edit_committee_info(info.text)
+                # remove unicode 
+                info = rm_unicode(info.text)
+                
+                # [header, Chair, CoChair, ViceChair, CommitteeClerk, 
+                #  LegislativeCouncilStaff, Member, Other, hearings]
+                cominfo = self.edit_committee_info(info)
             tmp = meta + cominfo
             data.append(tmp)
         
