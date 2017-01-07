@@ -175,7 +175,7 @@ class GetHouse(object):
                     warn2 = 'my var house and therefore my indexing ID.'
                     warning(warn, warn1, warn2, official, left)
                     # I'm adding it in for now 
-                    rep = [' ', ' '] + [None for i in xrange(14)]
+                    rep = [' ', ' '] + [None for i in xrange(13)]
                 
                 # also feed websites, see TODO
                 
