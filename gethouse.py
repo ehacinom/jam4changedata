@@ -112,7 +112,7 @@ class GetHouse(object):
         off_header = 'http://docs.legis.wisconsin.gov'
 
         # set up regex for official webpage
-        # https://regex101.com/r/6er3zh/1
+        # https://regex101.com/r/6er3zh/2
         regex = r'^\n+\w+? (.+?) (\w+?)\n+((.+?)|)\n+\w+ District ' + \
                 r'(\d+?) \((R|D) - (.+?)\)(\s|\S)+?Madison Office:' + \
                 r'\s+(.+?)\s+Telephone:\n\s+(.+)\s*(Fax:\n\s+(.+)|' + \
@@ -120,6 +120,13 @@ class GetHouse(object):
                 r'District Address:\s+(.+)|)\s+(Voting Address:\s+' + \
                 r'(.+)|)\s*(Staff:\n((\s|\S)+?)|)\n(Current Commit' + \
                 r'tees\n((\s|\S)+?)|)\n\s+(Biography\n((.| |\n)+)|)$'
+        regex = r'^\n+\w+? (.+?) (\w+?)\n+((.+?)|)\n+\w+ District ' + \
+                r'(\d+?) \((R|D) - (.+?)\)(\s|\S)+?Madison Office:' + \
+                r'\s+(.+?)\s+Telephone:\n\s+(.+)\s*(Fax:\n\s+(.+)|)' + \
+                r'\s+(District Phone:\s+(.+)|)\s+Email:\n(.+)\s+' + \
+                r'(District Address:\s+(.+)|)\s+(Voting Address:\s+' + \
+                r'(.+)|)\s*(Staff:\n((\s|\S)+?)|)\n(Current Committees' + \
+                r'\n((\s|\S)+?)|)\n\s+(Biography\n((.| |\n)+)|)$'
         self.regex = re.compile(regex)
 
         # Go to main list and parse html
@@ -129,9 +136,11 @@ class GetHouse(object):
         parser = BeautifulSoup(text, "lxml")
         legislators = parser.body.find_all('div', attrs={'class':'rounded'})
 
-        # for each legislator
+        # get an ID index for each user
+        tag = self.out[0].upper()
         house = []
-        for legis in legislators:
+        # for each legislator
+        for i, legis in enumerate(legislators):
             # ignore class="breadcrumb rounded"
             if legis['class'][0] == 'breadcrumb': continue
     
@@ -155,16 +164,24 @@ class GetHouse(object):
                 
                 # match for data
                 match = self.regex.search(left)
-                if not match:
-                    warn = 'No data parsed for representative. No regex match.'
-                    warning(warn, 'HTML below.', left, official)
-                    continue
                 
                 # retrieve data
-                rep = self.edit_left(match)
+                if match:
+                    # retrieve data
+                    rep = self.edit_left(match)
+                else:             
+                    warn = 'No data parsed for representative. No regex match.'
+                    warn1 = 'Adding it in for now because I want happiness for'
+                    warn2 = 'my var house and therefore my indexing ID.'
+                    warning(warn, warn1, warn2, official, left)
+                    # I'm adding it in for now 
+                    rep = [' ', ' '] + [None for i in xrange(14)]
                 
-                rep.extend([official, personal])
                 # also feed websites, see TODO
+                
+                # index
+                tmp = tag + "%02d" % i
+                rep = [tmp] + rep + [official, personal]
                 house.append(rep)
             else:
                 warn = 'Website missing of a legislator: official'
@@ -175,7 +192,7 @@ class GetHouse(object):
         fn = out + '_list.txt'
         with open(fn, 'w') as f:
             for h in house:
-                f.write(h[0] + ' ' + h[1] + '\n')
+                f.write(h[1] + ' ' + h[2] + '\n')
 
         # write house to csv
         fn = out + '.csv'
