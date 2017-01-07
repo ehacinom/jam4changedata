@@ -175,7 +175,7 @@ class GetHouse(object):
                     warn2 = 'my var house and therefore my indexing ID.'
                     warning(warn, warn1, warn2, official, left)
                     # I'm adding it in for now 
-                    rep = [' ', ' '] + [None for i in xrange(13)]
+                    rep = [' ', ' '] + [None for i in xrange(14)]
                 
                 # also feed websites, see TODO
                 
@@ -196,8 +196,8 @@ class GetHouse(object):
 
         # write house to csv
         fn = out + '.csv'
-        header = ['FirstName', 'LastName', 'Position', 'District', 'Party', 
-                  'City', 'MadisonOffice', 'Telephones', 'Fax', 
+        header = ['ID', 'FirstName', 'LastName', 'Position', 'District', 
+                  'Party', 'City', 'MadisonOffice', 'Telephones', 'Fax', 
                   'DistrictPhone', 'Email', 'DistrictAddress', 
                   'VotingAddress', 'Staff', 'Committees', 'Biography', 
                   'OfficiaWeb', 'PersonalWeb']
