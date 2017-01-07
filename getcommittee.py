@@ -5,12 +5,6 @@ import re
 from utils import *
 import xmltodict
 
-## Note this moves output of ipython notebook to terminal 
-## but lets us have unicode characters
-# import sys
-# reload(sys)
-# sys.setdefaultencoding("utf-8")
-
 class GetCommittee(object):
     """
     Get data from website and move it to CSV
@@ -39,7 +33,7 @@ class GetCommittee(object):
         SAVE TO FILE committee_list.txt
         names of all the committees
     
-        TO DO
+        TODO
         Follow more links? Get more research? as I've skipped links for ease.
         Definitely remove lists and turn into strings uhoh :p
         Fix up edit_committee_info, it's long and repetitive.
@@ -77,7 +71,7 @@ class GetCommittee(object):
             writer.writerow(header)
             writer.writerows(data)
     
-        return
+        return None
 
     def edit_Joint_Committee(self, item):
         """
@@ -192,14 +186,11 @@ class GetCommittee(object):
     
         """
         
-        print info
-        
         # name exceptions?
         names = ['VanderMeer', 'Bowers2']
     
         # rm header
         a = info.split('Notify', 1)[-1].lstrip().rstrip()
-        print a
     
         # add space before every CAP preceded by ')' or '[a-z]' or '2' but NOT '\n', ' ' or '-'
         #b = re.sub(r'([a-z][a-z|\)])([A-Z])', r'\1\n\2', a)
@@ -207,23 +198,15 @@ class GetCommittee(object):
         # https://regex101.com/r/XS0OC5/1
         b = re.sub(r'(?!VanderM)([A-Z|\(]\w+[a-z|\)|2])([A-Z])', r'\1\n\2', a)
     
-        print b
-    
         # add space before '(' - rare
         # eg for clerk phone number
         c = re.sub(r'([a-z])\(', r'\1 (', b)
         
-        print c
-    
         # replace '\r\n ' to '\n'
         d = re.sub(r'\r\n +', '\n', c)
-        
-        print e
     
         # lots of spaces to one
         e = re.sub(' +', ' ', d)
-    
-        print f
     
         # split off hearings
         hearings = None
@@ -256,9 +239,12 @@ class GetCommittee(object):
             if h:
                 header = ' '.join([i.lstrip() for i in h])
     
-        # split persons 
+        # setup
         Chair, CoChair, ViceChair = [], [], []
         CommitteeClerk, LegislativeCouncilStaff = [], []
+        Member, Other = [], []
+    
+        # split persons 
         prev = None
         if persons:
             lines = persons.split('\n')
@@ -299,18 +285,18 @@ class GetCommittee(object):
                     LegislativeCouncilStaff.append(a[1])
                     prev = LegislativeCouncilStaff
                     continue
-            
+                
                 # try/except to deal with missing committee pages from
                 # turnover, jan 5 2017
                 try:
                     # repeat name with no tag
                     prev.append(a[0].lstrip())
                 except AttributeError:
-                    warn = 'Due to missing committee chairs (new 2017 class).'
-                    warning(warn, lines, line, a)
-
+                    warn = 'Missing committee chairs (new year), still added.'
+                    warning(warn, lines)
+                    Member.append(a[0].lstrip())
+        
         # parse members
-        Member, Other = [], []
         lines = members.split('\n')
         for i, line in enumerate(lines):
             if not line: continue
@@ -346,6 +332,30 @@ class GetCommittee(object):
             # Member
             Member.append(line)
     
+        # argh, some of these return data as just None 
+        # so we're going to just set it to a None array
+        # so it gets added
+        data = [None for i in xrange(9)]
+        
+        
+        # NOW THE SUPER JENKY PART HAPPENS
+        # BECAUSE I DON'T WANT TO REWRITE
+        # AND BECAUSE I DON'T WANT LISTS, I WANT STR
+        # HERE GOES
+        def joiner(annoying):
+            if not annoying: return annoying
+            return '; '.join(annoying)
+        Chair = joiner(Chair)
+        CoChair = joiner(CoChair)
+        ViceChair = joiner(ViceChair)
+        CommitteeClerk = joiner(CommitteeClerk)
+        LegislativeCouncilStaff = joiner(LegislativeCouncilStaff)
+        Member = joiner(Member)
+        Other = joiner(Other)
+        hearings = joiner(hearings)
+        # WELP
+        
+        # return data
         data =  [header, Chair, CoChair, ViceChair, 
                  CommitteeClerk, LegislativeCouncilStaff, 
                  Member, Other, hearings]
@@ -386,9 +396,8 @@ class GetCommittee(object):
             text = load_txt(url)
             parser = BeautifulSoup(text, "lxml")
             info = parser.body.find('div', attrs={'class':'span5'})
-        
+            
             # retrieve committee info
-            cominfo = [None for i in xrange(9)]
             if info:
                 # remove unicode 
                 info = rm_unicode(info.text)
@@ -396,7 +405,14 @@ class GetCommittee(object):
                 # [header, Chair, CoChair, ViceChair, CommitteeClerk, 
                 #  LegislativeCouncilStaff, Member, Other, hearings]
                 cominfo = self.edit_committee_info(info)
-            tmp = meta + cominfo
-            data.append(tmp)
+                
+                # don't add to data if missing cominfo
+                tmp = meta + cominfo
+                data.append(tmp)
+            else:
+                warn = 'Missing info in get_committee_info, still added.'
+                warning(warn, meta)
+                tmp = meta + [None for i in xrange(9)]
+                data.append(tmp)
         
         return data

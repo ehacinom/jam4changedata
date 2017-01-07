@@ -35,7 +35,7 @@ class GetHouse(object):
         Notes on html grab from each individual official website
             str all but can be otherwise denoted
             () optional
-            regex match, tuple https://regex101.com/r/6er3zh/1
+            regex match, tuple https://regex101.com/r/6er3zh/1 and 2
                 1 FirstName 
                 2 LastName 
                 3 
