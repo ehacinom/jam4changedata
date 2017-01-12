@@ -202,7 +202,9 @@ class GetHouse(object):
                   'VotingAddress', 'Staff', 'Committees', 'Biography', 
                   'OfficiaWeb', 'PersonalWeb']
         with open(fn, 'wb') as f:
-            writer = csv.writer(f)
+            #quotechar="'", escapechar = '\\', lineterminator = '\r\n'
+            # also see utils.py rm_unicode()
+            writer = csv.writer(f, delimiter='|', quoting = csv.QUOTE_NONE)
             writer.writerow(header)
             writer.writerows(house)
 

@@ -62,12 +62,14 @@ class GetCommittee(object):
                 f.write(d[0] + '\n')
     
         # write list of lists to outfile
-        header = ['CommitteeName', 'CommitteeType', 'URL', 
+        header = ['CommitteeName', 'CommitteeType', 'Link', 
                   'Header', 'Chair', 'CoChair', 
                   'ViceChair', 'CommitteeClerk', 'LegislativeCouncilStaff', 
                   'Members', 'OtherMembers', 'Hearings']
         with open('committees.csv', 'w') as f:
-            writer = csv.writer(f)
+            #quotechar="'", escapechar = '\\', lineterminator = '\r\n'
+            # also see utils.py rm_unicode()
+            writer = csv.writer(f, delimiter='|', quoting = csv.QUOTE_NONE)
             writer.writerow(header)
             writer.writerows(data)
     
