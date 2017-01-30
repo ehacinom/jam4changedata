@@ -193,7 +193,7 @@ class GetHouse(object):
 
         # write house to csv
         fn = out + '.csv'
-        header = ['ID', 'FirstName', 'LastName', 'Position', 'District', 
+        header = ['HID', 'FirstName', 'LastName', 'Position', 'District', 
                   'Party', 'City', 'MadisonOffice', 'Telephones', 'Fax', 
                   'DistrictPhone', 'Email', 'DistrictAddress', 
                   'VotingAddress', 'Staff', 'Committees', 'Biography', 
