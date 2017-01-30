@@ -168,19 +168,16 @@ class GetHouse(object):
                     rep = self.edit_left(match)
                 else:             
                     warn = 'No data parsed for representative. No regex match.'
-                    warn1 = 'Adding it in for now because I want happiness for'
-                    warn2 = 'my var house and therefore my indexing ID.'
-                    warning(warn, warn1, warn2, official, left)
-                    # I'm adding it in for now 
-                    rep = ['', ''] + [None for i in xrange(14)]
+                    warn1 = 'NO DATA ADDED.'
+                    warning(warn, warn1, official, left)
+                    # rep = ['', ''] + [None for i in xrange(14)]
+                    # if this is added, tag no longer works (duplicate, also None)
+                    continue
                 
                 # also feed websites, see TODO
                 
                 # index is S/A District
-                # try loop for unparsed data for representative/no regex mat
-                # added in for indexing ID
-                try: tmp = tag + "%02d" % int(rep[3])
-                except TypeError: tmp = None
+                tag + "%02d" % int(rep[3])
                 rep = [tmp] + rep + [official, personal]
                 house.append(rep)
             else:
