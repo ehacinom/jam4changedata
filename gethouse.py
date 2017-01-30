@@ -7,7 +7,7 @@ from utils import *
 class GetHouse(object):
     """
     Get data from website and move it to CSV
-    Outputs 16 fields to 'out.csv'
+    Outputs 18 fields to 'out.csv'
     Outputs legislatures to 'out_list.txt'
     
     
@@ -107,19 +107,19 @@ class GetHouse(object):
         # Each representative has official website, and most have personal website
         # official is your 4digit ID at the end of 
         #     http://docs.legis.wisconsin.gov/YEAR/legislators/OUT/
-        # personal is your District/LastName at the end of
+        # personal is your (District)/LastName at the end of
         #     http://legis.wisconsin.gov/OUT/
         off_header = 'http://docs.legis.wisconsin.gov'
 
         # set up regex for official webpage
         # https://regex101.com/r/6er3zh/2
-        regex = r'^\n+\w+? (.+?) (\w+?)\n+((.+?)|)\n+\w+ District ' + \
-                r'(\d+?) \((R|D) - (.+?)\)(\s|\S)+?Madison Office:' + \
-                r'\s+(.+?)\s+Telephone:\n\s+(.+)\s*(Fax:\n\s+(.+)|' + \
-                r')\s+(District Phone:\s+(.+)|)\s+Email:\n(.+)\s+(' + \
-                r'District Address:\s+(.+)|)\s+(Voting Address:\s+' + \
-                r'(.+)|)\s*(Staff:\n((\s|\S)+?)|)\n(Current Commit' + \
-                r'tees\n((\s|\S)+?)|)\n\s+(Biography\n((.| |\n)+)|)$'
+        # regex = r'^\n+\w+? (.+?) (\w+?)\n+((.+?)|)\n+\w+ District ' + \
+        #         r'(\d+?) \((R|D) - (.+?)\)(\s|\S)+?Madison Office:' + \
+        #         r'\s+(.+?)\s+Telephone:\n\s+(.+)\s*(Fax:\n\s+(.+)|' + \
+        #         r')\s+(District Phone:\s+(.+)|)\s+Email:\n(.+)\s+(' + \
+        #         r'District Address:\s+(.+)|)\s+(Voting Address:\s+' + \
+        #         r'(.+)|)\s*(Staff:\n((\s|\S)+?)|)\n(Current Commit' + \
+        #         r'tees\n((\s|\S)+?)|)\n\s+(Biography\n((.| |\n)+)|)$'
         regex = r'^\n+\w+? (.+?) (\w+?)\n+((.+?)|)\n+\w+ District ' + \
                 r'(\d+?) \((R|D) - (.+?)\)(\s|\S)+?Madison Office:' + \
                 r'\s+(.+?)\s+Telephone:\n\s+(.+)\s*(Fax:\n\s+(.+)|)' + \
@@ -136,11 +136,10 @@ class GetHouse(object):
         parser = BeautifulSoup(text, "lxml")
         legislators = parser.body.find_all('div', attrs={'class':'rounded'})
 
-        # get an ID index for each user
-        tag = self.out[0].upper()
-        house = []
         # for each legislator
-        for i, legis in enumerate(legislators):
+        tag = self.out[0].upper()        # get an ID index for each user
+        house = []
+        for legis in legislators:
             # ignore class="breadcrumb rounded"
             if legis['class'][0] == 'breadcrumb': continue
     
@@ -149,9 +148,7 @@ class GetHouse(object):
             for link in legis.find_all('a'):
                 tmp = link.get('href')
                 if tmp:
-                    if official and personal: 
-                        break
-            
+                    if official and personal: break
                     if official_web.match(tmp) is not None:
                         official = off_header + tmp #tmp[-4:]
                     if personal_web.match(tmp):
@@ -160,7 +157,7 @@ class GetHouse(object):
             # go to official site and grab all other information
             if official: 
                 left, _ = self.get_official_html(official)
-                # ignore right for now TODO
+                # ignore right for now TODO 
                 
                 # match for data
                 match = self.regex.search(left)
@@ -175,12 +172,15 @@ class GetHouse(object):
                     warn2 = 'my var house and therefore my indexing ID.'
                     warning(warn, warn1, warn2, official, left)
                     # I'm adding it in for now 
-                    rep = [' ', ' '] + [None for i in xrange(14)]
+                    rep = ['', ''] + [None for i in xrange(14)]
                 
                 # also feed websites, see TODO
                 
-                # index
-                tmp = tag + "%02d" % i
+                # index is S/A District
+                # try loop for unparsed data for representative/no regex mat
+                # added in for indexing ID
+                try: tmp = tag + "%02d" % int(rep[3])
+                except TypeError: tmp = None
                 rep = [tmp] + rep + [official, personal]
                 house.append(rep)
             else:
@@ -202,9 +202,10 @@ class GetHouse(object):
                   'VotingAddress', 'Staff', 'Committees', 'Biography', 
                   'OfficiaWeb', 'PersonalWeb']
         with open(fn, 'wb') as f:
-            #quotechar="'", escapechar = '\\', lineterminator = '\r\n'
+            #quotechar="'", lineterminator = '\r\n'
             # also see utils.py rm_unicode()
-            writer = csv.writer(f, delimiter='|', quoting = csv.QUOTE_NONE)
+            writer = csv.writer(f, delimiter='|', quoting = csv.QUOTE_NONE, 
+                                escapechar = '\\')
             writer.writerow(header)
             writer.writerows(house)
 

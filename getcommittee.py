@@ -322,7 +322,7 @@ class GetCommittee(object):
             # ViceChair
             a = line.split(' (Vice-Chair)')
             if len(a) == 2:
-                if a[0] in CoChair:
+                if a[0] in ViceChair:
                     continue
                 ViceChair.append(a[0])
                 continue
