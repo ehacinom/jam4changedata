@@ -137,7 +137,6 @@ class GetHouse(object):
         legislators = parser.body.find_all('div', attrs={'class':'rounded'})
 
         # for each legislator
-        tag = self.out[0].upper()        # get an ID index for each user
         house = []
         for legis in legislators:
             # ignore class="breadcrumb rounded"
@@ -176,9 +175,9 @@ class GetHouse(object):
                 
                 # also feed websites, see TODO
                 
-                # index is S/A District
-                tag + "%02d" % int(rep[3])
-                rep = [tmp] + rep + [official, personal]
+                # get an ID index for each user
+                tag = self.out[0].upper() + "%02d" % int(rep[3])
+                rep = [tag] + rep + [official, personal]
                 house.append(rep)
             else:
                 warn = 'Website missing of a legislator: official'
