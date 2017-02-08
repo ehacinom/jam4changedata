@@ -47,3 +47,8 @@ def rm_unicode(text):
         warning("Unicode in utils.py", e)
     
     return e
+
+def joiner(annoying):
+    """Super jenky, oh wells"""
+    if not annoying: return annoying
+    return ';'.join(annoying)

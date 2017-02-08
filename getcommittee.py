@@ -4,6 +4,7 @@ import lxml
 import re
 from utils import *
 import xmltodict
+from collections import defaultdict
 
 class GetCommittee(object):
     """
@@ -25,23 +26,24 @@ class GetCommittee(object):
         
         SAVE TO FILE committees.csv
         data
-            [name, committee_type, link, 
-             header, Chair, CoChair, 
+            [CommitteeName, CommitteeType, Link, 
+             Header, Chair, CoChair, 
              ViceChair, CommitteeClerk, LegislativeCouncilStaff, 
-             Member, Other, hearings]
+             Member, Other, Hearings,
+             ComTopics]
     
         SAVE TO FILE committee_list.txt
         names of all the committees
     
         TODO
         Follow more links? Get more research? as I've skipped links for ease.
-        Definitely remove lists and turn into strings uhoh :p
         Fix up edit_committee_info, it's long and repetitive.
     
         """
     
         root = 'http://docs.legis.wisconsin.gov/feed/2015/committees/'
         committee_type = ['Senate', 'Assembly', 'Joint', 'Other']
+        self.topics = self.get_topics()
     
         data = []
         for ct in committee_type:
@@ -52,8 +54,8 @@ class GetCommittee(object):
         
             # other data
             infodata = self.get_committee_info(metadata)
-        
-            # add to data
+            
+            # write
             data.extend(infodata)
         
         # save list of committees to file
@@ -65,7 +67,7 @@ class GetCommittee(object):
         header = ['CommitteeName', 'CommitteeType', 'Link', 
                   'Header', 'Chair', 'CoChair', 
                   'ViceChair', 'CommitteeClerk', 'LegislativeCouncilStaff', 
-                  'Members', 'OtherMembers', 'Hearings']
+                  'Member', 'Other', 'Hearings', 'ComTopics']
         with open('committees.csv', 'w') as f:
             #quotechar="'", escapechar = '\\', lineterminator = '\r\n'
             # also see utils.py rm_unicode()
@@ -137,7 +139,7 @@ class GetCommittee(object):
             (u'a10:updated', u'2016-12-17T07:35:58-06:00')
         
         OUTPUT
-        data, [name, committee_type, link]
+        data, [CommitteeName, CommitteeType, Link]
     
         """
     
@@ -165,6 +167,16 @@ class GetCommittee(object):
     
         return data
     
+    def get_topics(self):
+        """Get committees and hand-assigned topics."""
+        topics = defaultdict(str)
+        with open('committee_topics.txt', 'r') as f:
+            reader = csv.reader(f)
+            for row in reader:
+                topics[row[0]] = row[1]
+        
+        return topics
+    
     def edit_committee_info(self, info):
         """
         String editing to get committee info
@@ -175,9 +187,9 @@ class GetCommittee(object):
     
         OUTPUT
         data, extrated from info
-            [header, Chair, CoChair, ViceChair, 
-             CommitteeClerk, LegislativeCouncilStaff, 
-             Member, Other, hearings]
+            [Header, Chair, CoChair, 
+             ViceChair, CommitteeClerk, LegislativeCouncilStaff, 
+             Member, Other, Hearings]
     
         TO DO
         Look into exceptions for names when adding spaces before capital letters 
@@ -218,10 +230,12 @@ class GetCommittee(object):
             f, hearings = f
         
             # parse
+            hearings = re.sub('Executive Session ', 'Private', hearings)
+            hearings = re.sub('Public Session ', 'Public', hearings)
             hearings = hearings.lstrip().split('\n\n\n\n')
             tmp = []
             for h in hearings:
-                h = re.sub('\n', ' - ', h)
+                h = re.sub('\n', '-', h)
                 tmp.append(h)
         
             hearings = tmp
@@ -344,9 +358,6 @@ class GetCommittee(object):
         # BECAUSE I DON'T WANT TO REWRITE
         # AND BECAUSE I DON'T WANT LISTS, I WANT STR
         # HERE GOES
-        def joiner(annoying):
-            if not annoying: return annoying
-            return '; '.join(annoying)
         Chair = joiner(Chair)
         CoChair = joiner(CoChair)
         ViceChair = joiner(ViceChair)
@@ -384,10 +395,10 @@ class GetCommittee(object):
     
         OUTPUT
         data
-            [name, committee_type, link, 
-             header, Chair, CoChair, 
+            [CommitteeName, CommitteeType, Link, 
+             Header, Chair, CoChair, 
              ViceChair, CommitteeClerk, LegislativeCouncilStaff, 
-             Member, Other, hearings]
+             Member, Other, Hearings, ComTopics]
     
         """
     
@@ -408,13 +419,16 @@ class GetCommittee(object):
                 #  LegislativeCouncilStaff, Member, Other, hearings]
                 cominfo = self.edit_committee_info(info)
                 
+                # topics
+                comtopics = self.topics[name]
+                
                 # don't add to data if missing cominfo
-                tmp = meta + cominfo
+                tmp = meta + cominfo + list(comtopics)
                 data.append(tmp)
             else:
                 warn = 'Missing info in get_committee_info, still added.'
                 warning(warn, meta)
-                tmp = meta + [None for i in xrange(9)]
+                tmp = meta + [None for i in xrange(10)]
                 data.append(tmp)
         
         return data

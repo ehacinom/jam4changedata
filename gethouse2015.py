@@ -196,7 +196,7 @@ class GetHouse(object):
                   'Party', 'City', 'MadisonOffice', 'Telephones', 'Fax', 
                   'DistrictPhone', 'Email', 'DistrictAddress', 
                   'VotingAddress', 'Staff', 'Committees', 'Biography', 
-                  'OfficiaWeb', 'PersonalWeb']
+                  'OfficialWeb', 'PersonalWeb']
         with open(fn, 'wb') as f:
             #quotechar="'", lineterminator = '\r\n'
             # also see utils.py rm_unicode()
