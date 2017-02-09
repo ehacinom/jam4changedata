@@ -393,7 +393,7 @@ class GetData(object):
         # save list of legislators to file
         with open('legislators.txt', 'w') as f:
             for leg in legislators:
-                row = leg[0] + ',' + leg[1] + ',' + leg[1] + ' ' + leg[2] + \
+                row = leg[0] + ',' + leg[1] + ',' + leg[2] + ' ' + leg[3] + \
                       ',' + leg[21] + '\n'
                 f.write(row)
 
@@ -410,7 +410,7 @@ class GetData(object):
             writer = csv.writer(f, delimiter='|', quoting = csv.QUOTE_NONE, 
                                 escapechar = '\\')
             writer.writerow(header)
-            writer.writerows(house)
+            writer.writerows(legislators)
 
         return len(legislators)
 

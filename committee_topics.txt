@@ -1,30 +1,30 @@
-Midwestern Higher Education Commission,AGJR
-Sporting Heritage Council,GI
-Read to Lead Development Council,ERI
-University of Wisconsin Hospitals and Clinics Authority,RK
-Study Committee on the Student Achievement in Education (SAGE) Program,DFO
-Study Committee on Problem-Solving Courts,Alternatives,and Diversions,TJ
-Study Committee on Adoption Disruption and Dissolution,EFI
-Study Committee on the Review of Tax Incremental Financing,W
-Study Committee on the Review of Wisconsin Technical College System Funding and Governance,WEFR
-Study Committee on Transfer of Structured Settlement Payments,FOE
-Special Committee on State-Tribal Relations,TWAS
-Study Committee on the Review of the Wisconsin Technical College System Funding and Governance,OF
-Joint Committee on Employment Relations,BLEH
-Joint Committee for Review of Administrative Rules,EIFW
-Joint Committee on Finance,OFJ
-Joint Legislative Audit Committee,FOE
-Joint Committee on Information Policy and Technology,WR
-Law Revision Committee,L
-Joint Legislative Council,LA
-Joint Committee on Legislative Organization,LA
-Joint Review Committee on Criminal Penalties,ER
-Joint Survey Committee on Tax Exemptions,WOR
-Joint Survey Committee on Retirement Systems,FES
-Assembly Committee on Campaigns and Elections,OWE
-Assembly Committee on Agriculture,JWOE
-Assembly Committee on Aging and Long-Term Care,O
-Assembly Committee on Colleges and Universities,WQR
-Assembly Committee on Constitution and Ethics,ROW
-Assembly Committee on Children and Families,OF
-Assembly Committee on Corrections,OWERV
+Midwestern Higher Education Commission;AGJR
+Sporting Heritage Council;GI
+Read to Lead Development Council;ERI
+University of Wisconsin Hospitals and Clinics Authority;RK
+Study Committee on the Student Achievement in Education (SAGE) Program;DFO
+Study Committee on Problem-Solving Courts, Alternatives, and Diversions;TJ
+Study Committee on Adoption Disruption and Dissolution;EFI
+Study Committee on the Review of Tax Incremental Financing;W
+Study Committee on the Review of Wisconsin Technical College System Funding and Governance;WEFR
+Study Committee on Transfer of Structured Settlement Payments;FOE
+Special Committee on State-Tribal Relations;TWAS
+Study Committee on the Review of the Wisconsin Technical College System Funding and Governance;OF
+Joint Committee on Employment Relations;BLEH
+Joint Committee for Review of Administrative Rules;EIFW
+Joint Committee on Finance;OFJ
+Joint Legislative Audit Committee;FOE
+Joint Committee on Information Policy and Technology;WR
+Law Revision Committee;L
+Joint Legislative Council;LA
+Joint Committee on Legislative Organization;LA
+Joint Review Committee on Criminal Penalties;ER
+Joint Survey Committee on Tax Exemptions;WOR
+Joint Survey Committee on Retirement Systems;FES
+Assembly Committee on Campaigns and Elections;OWE
+Assembly Committee on Agriculture;JWOE
+Assembly Committee on Aging and Long-Term Care;O
+Assembly Committee on Colleges and Universities;WQR
+Assembly Committee on Constitution and Ethics;ROW
+Assembly Committee on Children and Families;OF
+Assembly Committee on Corrections;OWERV
