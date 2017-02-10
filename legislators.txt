@@ -1,130 +1,132 @@
-A97,1533,Scott Allen,2
-A47,1638,Jimmy P. Anderson,4
-A32,1534,Tyler August,5
-A41,1535,Joan Ballweg,2
+A97,1533,Scott Allen,0
+A47,1638,Jimmy P. Anderson,2
+A32,1534,Tyler August,2
+A41,1535,Joan Ballweg,0
 A64,1536,Peter Barca,0
-A77,1538,Terese Berceau,4
+A77,1538,Terese Berceau,2
 A68,1539,Kathleen Bernier,2
-A95,1540,Jill Billings,4
-A39,1541,Mark Born,0
+A95,1540,Jill Billings,1
+A39,1541,Mark Born,2
 A10,1542,David Bowen,4
-A22,1543,Janel Brandtjen,5
-A50,1544,Edward Brooks,4
-A60,1545,Robert Brooks,5
-A19,1546,Jonathan Brostoff,1
-A81,1547,Dave Considine,3
-A17,1634,David C. Crowley,1
-A94,1551,Steve Doyle,4
-A99,1552,Cindi S. Duchow,4
-A87,1553,James Edming,4
-A35,1549,Mary Felzkowski,1
-A11,1633,Jason M. Fields,4
-A58,1554,Bob Gannon,4
-A90,1555,Eric Genrich,2
-A18,1556,Evan Goyke,1
-A46,1558,Gary Hebl,0
-A79,1559,Dianne Hesselbein,5
+A22,1543,Janel Brandtjen,1
+A50,1544,Edward Brooks,3
+A60,1545,Robert Brooks,3
+A19,1546,Jonathan Brostoff,0
+A81,1547,Dave Considine,1
+A17,1634,David C. Crowley,2
+A94,1551,Steve Doyle,5
+A99,1552,Cindi S. Duchow,1
+A87,1553,James Edming,5
+A35,1549,Mary Felzkowski,3
+A11,1633,Jason M. Fields,0
+A58,1554,Bob Gannon,3
+A90,1555,Eric Genrich,5
+A18,1556,Evan Goyke,2
+A46,1558,Gary Hebl,4
+A79,1559,Dianne Hesselbein,1
 A54,1560,Gordon Hintz,5
-A33,1561,Cody Horlacher,0
-A13,1562,Rob Hutton,5
-A02,1563,Andre Jacque,4
-A37,1564,John Jagler,0
-A28,1565,Adam Jarchow,3
+A33,1561,Cody Horlacher,4
+A13,1562,Rob Hutton,2
+A02,1563,Andre Jacque,2
+A37,1564,John Jagler,3
+A28,1565,Adam Jarchow,4
 A26,1569,Terry Katsma,0
-A61,1570,Samantha Kerkman,0
-A12,1571,Frederick Kessler,5
+A61,1570,Samantha Kerkman,2
+A12,1571,Frederick Kessler,0
 A01,1572,Joel Kitchens,3
 A38,1573,Joel Kleefisch,4
-A24,1574,Daniel Knodl,2
-A44,1576,Debra Kolste,2
-A14,1577,Dale Kooyenga,2
-A59,1578,Jesse Kremer,2
-A72,1579,Scott Krug,4
-A84,1580,Mike Kuglitsch,5
-A69,1581,Bob Kulp,5
+A24,1574,Daniel Knodl,4
+A44,1576,Debra Kolste,0
+A14,1577,Dale Kooyenga,4
+A59,1578,Jesse Kremer,1
+A72,1579,Scott Krug,3
+A84,1580,Mike Kuglitsch,4
+A69,1581,Bob Kulp,0
 A31,1583,Amy Loudenbeck,1
-A88,1584,John Macco,5
-A66,1585,Cory Mason,5
+A88,1584,John Macco,2
+A66,1585,Cory Mason,0
 A74,1586,Beth Meyers,1
-A73,1587,Nick Milroy,2
-A56,1588,David Murphy,0
-A36,1589,Jeffrey Mursau,4
-A96,1591,Lee Nerison,3
-A98,1592,Adam Neylon,3
-A51,1593,Todd Novak,5
-A89,1594,John Nygren,5
-A65,1595,Tod Ohnstad,2
-A23,1597,Jim Ott,5
-A40,1598,Kevin Petersen,0
-A93,1599,Warren Petryk,0
-A80,1600,Sondy Pope,3
-A92,1642,Treig E. Pronschinske,5
-A75,1601,Romaine Quinn,1
+A73,1587,Nick Milroy,4
+A56,1588,David Murphy,4
+A36,1589,Jeffrey Mursau,5
+A96,1591,Lee Nerison,5
+A98,1592,Adam Neylon,2
+A51,1593,Todd Novak,1
+A89,1594,John Nygren,3
+A65,1595,Tod Ohnstad,3
+A23,1597,Jim Ott,3
+A40,1598,Kevin Petersen,1
+A93,1599,Warren Petryk,3
+A80,1600,Sondy Pope,2
+A92,1642,Treig E. Pronschinske,2
+A75,1601,Romaine Quinn,0
 A07,1602,Daniel Riemer,3
-A42,1603,Keith Ripp,0
-A21,1604,Jessie Rodriguez,0
+A42,1603,Keith Ripp,4
+A21,1604,Jessie Rodriguez,4
 A55,1605,Mike Rohrkaste,3
-A15,1606,Joe Sanfelippo,0
-A48,1607,Melissa Sargent,0
-A53,1608,Michael Schraa,2
+A15,1606,Joe Sanfelippo,3
+A48,1607,Melissa Sargent,1
+A53,1608,Michael Schraa,4
 A71,1609,Katrina Shankland,3
-A20,1610,Christine Sinicki,5
-A82,1611,Ken Skowronski,3
-A85,1641,Patrick J. Snyder,2
-A86,1612,John Spiros,3
-A45,1613,Mark Spreitzer,3
-A29,1635,Rob R. Stafsholt,1
-A04,1614,David Steffen,5
-A05,1615,Jim Steineke,1
-A57,1616,Amanda Stuck,5
+A20,1610,Christine Sinicki,1
+A82,1611,Ken Skowronski,2
+A85,1641,Patrick J. Snyder,3
+A86,1612,John Spiros,4
+A45,1613,Mark Spreitzer,2
+A29,1635,Rob R. Stafsholt,0
+A04,1614,David Steffen,0
+A05,1615,Jim Steineke,4
+A57,1616,Amanda Stuck,0
 A78,1617,Lisa Subeck,2
-A67,1639,Rob L. Summerfield,0
-A34,1618,Rob Swearingen,4
-A06,1619,Gary Tauchen,2
-A76,1620,Chris Taylor,3
+A67,1639,Rob L. Summerfield,4
+A34,1618,Rob Swearingen,3
+A06,1619,Gary Tauchen,0
+A76,1620,Chris Taylor,5
 A52,1621,Jeremy Thiesfeldt,4
-A25,1622,Paul Tittl,4
-A49,1623,Travis Tranel,3
+A25,1622,Paul Tittl,3
+A49,1623,Travis Tranel,2
 A03,1632,Ron W. Tusler,1
-A70,1624,Nancy VanderMeer,2
-A27,1625,Tyler Vorpagel,5
-A63,1626,Robin Vos,3
-A43,1637,Don J. Vruwink,4
-A91,1627,Dana Wachs,0
-A62,1628,Thomas Weatherston,4
+A70,1624,Nancy VanderMeer,3
+A27,1625,Tyler Vorpagel,4
+A63,1626,Robin Vos,0
+A43,1637,Don J. Vruwink,0
+A91,1627,Dana Wachs,4
+A62,1628,Thomas Weatherston,2
 A83,1640,Chuck C. Wichgers,1
-A16,1629,Leon Young,3
-A08,1630,JoCasta Zamarripa,1
+A16,1629,Leon Young,5
+A08,1630,JoCasta Zamarripa,2
 A09,1631,Josh Zepnick,1
-A30,1636,Shannon M. Zimmerman,5
-S25,1500,Janet Bewley,3
-S03,1501,Tim Carpenter,2
-S02,1502,Robert L. Cowles,0
+A30,1636,Shannon M. Zimmerman,3
+S25,1500,Janet Bewley,5
+S03,1501,Tim Carpenter,0
+S02,1502,Robert L. Cowles,1
 S28,1646,David Craig,0
-S08,1503,Alberta Darling,1
-S27,1504,Jon Erpenbach,3
-S13,1505,Scott L. Fitzgerald,1
-S30,1507,Dave Hansen,5
-S10,1509,Sheila Harsdorf,1
-S06,1643,LaTonya Johnson,5
+S08,1503,Alberta Darling,5
+S27,1504,Jon Erpenbach,2
+S18,1644,Dan Feyen,5
+S13,1505,Scott L. Fitzgerald,3
+S30,1507,Dave Hansen,4
+S10,1509,Sheila Harsdorf,5
+S06,1643,LaTonya Johnson,3
 S33,1510,Chris Kapenga,4
 S07,1511,Chris Larson,2
-S01,1512,Frank G. Lasee,2
-S09,1515,Devin LeMahieu,0
-S17,1516,Howard L. Marklein,5
-S16,1517,Mark Miller,2
-S23,1518,Terry Moulton,2
+S01,1512,Frank G. Lasee,4
+S09,1515,Devin LeMahieu,3
+S17,1516,Howard L. Marklein,1
+S16,1517,Mark Miller,3
+S23,1518,Terry Moulton,4
 S11,1519,Stephen L. Nass,0
-S14,1520,Luther S. Olsen,2
-S29,1521,Jerry Petrowski,0
-S15,1522,Janis A. Ringhand,4
+S14,1520,Luther S. Olsen,5
+S29,1521,Jerry Petrowski,5
+S15,1522,Janis A. Ringhand,2
 S26,1523,Fred A. Risser,3
-S19,1524,Roger Roth,0
-S32,1525,Jennifer Shilling,5
-S20,1526,Duey Stroebel,4
+S19,1524,Roger Roth,3
+S32,1525,Jennifer Shilling,2
+S20,1526,Duey Stroebel,3
 S04,1527,Lena C. Taylor,3
+S24,1645,Patrick Testin,5
 S12,1528,Thomas Tiffany,5
 S31,1529,Kathleen Vinehout,5
 S05,1530,Leah Vukmir,0
-S21,1531,Van H. Wanggaard,1
-S22,1532,Robert W. Wirch,3
+S21,1531,Van H. Wanggaard,4
+S22,1532,Robert W. Wirch,4

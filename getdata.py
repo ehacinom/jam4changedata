@@ -162,9 +162,9 @@ class GetData(object):
         pcom, com = '', ''
         for cl in comlist:
             if cl[-1] == ')':
-                pcom += cl
+                pcom += ';' + cl
             else:
-                com += cl
+                com += ';' + cl
         
         if not pcom: pcom = None
         if not com: com = None
@@ -177,7 +177,7 @@ class GetData(object):
         if txt == None: 
             return txt
         
-        return txt.rstrip().lstrip().replace("\n", "\\n")
+        return txt.rstrip().lstrip().replace("\n", "<br/>")
 
     def _getlegislators_edit_left(self, mleft):
         """
@@ -414,4 +414,8 @@ class GetData(object):
 
         return len(legislators)
 
-
+    def next(self):
+        '''
+        '''
+        
+        pass
